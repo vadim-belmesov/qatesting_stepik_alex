@@ -1,0 +1,10 @@
+var_1 = input()
+var_2 = input()
+print("Меня зовут " + var_1 + ' ' + var_2)
+print("По умолчанию input tпринимает строковый тип")
+print(type(var_1))
+print("Чтобы input получил другой типа необходимо это указать")
+
+var_1 = int(input())
+var_2 = int(input())
+print(f"Сумма чисел равна: {var_1 + var_2}")
