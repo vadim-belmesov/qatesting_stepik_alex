@@ -1,6 +1,6 @@
 # список
-family["Alex", "Olga", "Semen", "Nastya", "Alex"]
-print()
+family = ["Alex", "Olga", "Semen", "Nastya", "Alex"]
+print(family)
 
 # множества
 
