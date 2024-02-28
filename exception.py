@@ -4,6 +4,7 @@ b = int(input("Введите 2е значение"))
 try:
     result = int(a/b)
 except ZeroDivisionError:
+    result = 0
     print("На ноль делить нельзя")
 
 print("Результат: "+ str(result))
