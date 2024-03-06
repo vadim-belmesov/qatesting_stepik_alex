@@ -1,21 +1,5 @@
 import sqlite3
-from User import User
-
-def login_check(login, db):
-    cursor.execute("""SELECT * FROM users_data""")
-    result = cursor.fetchall()
-    lenght_result = len(result)
-
-    i = 0
-    while i < lenght_result:
-        #print(result[i][1])
-        if str(login) == result[i][1]:
-            print("Login fail")
-            i += 1
-            continue
-        else:
-            return str(login)
-
+from func import login_check
 
 #Подключение к БД
 db_registration = sqlite3.connect(r'registration.db')
@@ -27,9 +11,7 @@ cursor.execute("""SELECT * FROM users_data""")
 result = cursor.fetchall()
 lenght_result = len(result)
 
-print(login_check('Ivan', db_registration))
-
-###
+"""Список команд"""
 print("1 - зарегистрировать нового пользователя")
 print("2 - авторизоваться в системе")
 print("3 - восстановить пароль")
@@ -38,14 +20,30 @@ selector = input('Введите цифру для выбора: ')
 #1 - Регистрация нового пользователя
 if selector == "1":
     print("Регистрация нового пользователя")
+    """Запускаем цикл для получения логина нового пользователя,
+    который будет запущен, пока переменная а == True"""
+    a = True
+    while a == True:
+        #проверка логина на повторяемость
+        new_login = str(input("Введите логин: "))
+        a = login_check(str(new_login), db_registration)
+    """Запускаем цикл для получения пароля,
+    который будет запущен, пока переменная с == True"""
+    c = 1
+    while c == True:
+        new_password = str(input("Введите пароль: "))
+        c = password_check(new_password)
+        # if ps == False:
+        #     break
+    """Запускаем цикл для получения кода,
+    который будет запущен, пока переменная b == True"""
+    b = 1
+    while b == True:
+        code = input("Введите кодовое слово: ")
+        b = code_check(code)
 
-    #проверка логина на повторяемость
-    new_login = input("Введите логин: ")
-
-    password = input("Введите пароль: ")
-    code = input("Введите кодовое слово: ")
-
-    user_data = (new_login, password, code)
+    """Записываем в БД данные о пользователе"""
+    user_data = (new_login, new_password, code)
     cursor.execute("""INSERT INTO users_data(Login, Password, Code)
     VALUES(?, ?, ?);""", user_data)
     db_registration.commit()

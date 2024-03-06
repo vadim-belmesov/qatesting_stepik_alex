@@ -1,6 +1,5 @@
 import sqlite3
-
-# #подключение к БД Win
+#подключение к БД Win
 """1. Создать базу данных registration.db"""
 db = sqlite3.connect(r'registration.db')
 print("Подключились к БД")
