@@ -2,7 +2,7 @@ import sqlite3
 
 db = sqlite3.connect('testDB.db') #подключение к БД
 print("Подключились к БД")
-cursor = db.cursor() #переменная для управления БД
+ #переменная для управления БД
 #Создание таблицы
 # cursor.execute("""CREATE TABLE IF NOT EXISTS Students(
 #     StudentsID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,7 +25,7 @@ data_students = [('Petr', 'Petrov'), ('Nan', 'Nanov')]
 cursor.executemany("""INSERT INTO Students(First_name, Last_name)
     VALUES(?, ?);""", data_students)
 db.commit()
-print(result)
+# print(result)
 
 #отправка несклольких запросов
 # cursor.executescript("""CREATE TABLE IF NOT EXISTS Students2(
