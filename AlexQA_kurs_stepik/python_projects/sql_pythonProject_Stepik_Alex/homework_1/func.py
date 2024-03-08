@@ -1,25 +1,25 @@
 """Функция проверки логина"""
+
 def login_check(new_login, db):
     cursor = db.cursor()
     cursor.execute("""SELECT * FROM users_data""")
     result = cursor.fetchall()
+    lenght_result = len(result)
 
     if new_login.isdigit():
         print("Логин не может быть цифрой!")
         return True
     for i in range(0,lenght_result):
-        # print(result[i][1])
         if str(new_login) == str(result[i][1]):
-            print("Login is present, enter new")
+            print(f"Здравствуйте {new_login}")
             return True
         else:
-            print("Login OK")
             return False
 
 """Функция проверки кода"""
 def code_check(code):
     if code.isdigit() == True:
-        print("digit")
+        # print("digit")
         if len(code) == 4:
             print(f"Код подходит, его длиина: {len(code)}")
             return False
@@ -34,5 +34,21 @@ def password_check(new_pass):
         print(len(new_pass))
         return True
     else:
-        print("Pass OK")
+        print("Пароль подходит")
         return False
+
+"""Проверка соответствия пароля логину"""
+def auth_pass_chek(auth_login, pass1, db):
+    cursor = db.cursor()
+    cursor.execute("""SELECT * FROM users_data""")
+    result = cursor.fetchall()
+    lenght_result = len(result)
+    # print(lenght_result)
+
+    for i in range(0, lenght_result):
+        # print(f"{result[i][1]} : {result[i][2]}")
+        if auth_login == result[i][1]:
+            if pass1 == result[i][2]:
+                # print(pass1)
+                return True
+    print("Вы ввели некорректные данные для авторизации!")

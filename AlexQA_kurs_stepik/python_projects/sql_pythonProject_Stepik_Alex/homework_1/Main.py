@@ -1,5 +1,10 @@
 import sqlite3
+"""Подключаем функции из файла (для улучшения читаемости кода)"""
 from func import login_check
+from func import password_check
+from func import code_check
+from func import auth_pass_chek
+
 
 #Подключение к БД
 db_registration = sqlite3.connect(r'registration.db')
@@ -33,8 +38,7 @@ if selector == "1":
     while c == True:
         new_password = str(input("Введите пароль: "))
         c = password_check(new_password)
-        # if ps == False:
-        #     break
+
     """Запускаем цикл для получения кода,
     который будет запущен, пока переменная b == True"""
     b = 1
@@ -47,33 +51,39 @@ if selector == "1":
     cursor.execute("""INSERT INTO users_data(Login, Password, Code)
     VALUES(?, ?, ?);""", user_data)
     db_registration.commit()
-    print("Создан новый пользователь: ")
     cursor.execute("""SELECT * FROM users_data""")
     result = cursor.fetchall()
-    print(result)
-
-
-
+    print(f"Создан новый пользователь: {new_login}")
 
 #2 - Авторизация
 elif selector == "2":
     print("Авторизация")
 
-    new_login = input("Введите логин: ")
-    password = input("Введите пароль: ")
+    f = 0
+    while f != True:
+        login = input("Введите логин: ")
+        f = login_check(login, db_registration) #true для существующего логина
 
-    print("ВЫ успешно авторизовались")
-    print("Проверьте корректность введённых данных")
+    r = 0
+    while r != True:
+        pas1 = input("Введите пароль: ")
+        r = auth_pass_chek(login, pas1, db_registration)
+    print(f"{login} ВЫ успешно авторизовались!")
 
 #3 - Восстановление пароля
 elif selector == "3":
     print("Восстановление пароля")
-    print("Для восстановления пароля необходимо ввести логина и кодовое слово")
+    print("Для восстановления пароля необходимо ввести логин и кодовое слово")
 
-    new_login = input("Enter login")
-    code = input("Enter code")
-    print("Проверьте корректность введённых данных")
-    new_pass = input("Введите новы пароль")
+    f = 0
+    while f != True:
+        login = input("Введите логин: ")
+        f = login_check(login, db_registration)  # true для существующего логина
+
+    g = 0
+    while g != True:
+        code = input("Enter code")
+        new_pass = input("Введите новы пароль")
 
 # Закрываем соединение
 db_registration.close()
