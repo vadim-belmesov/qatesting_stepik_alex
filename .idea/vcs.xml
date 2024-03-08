@@ -2,6 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/AlexQA_kurs_stepik/project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AlexQA_kurs_stepik/python_projects/sql_ATM/SqlATM_Stepik_Alex" vcs="Git" />
   </component>
 </project>
