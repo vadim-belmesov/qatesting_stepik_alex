@@ -17,11 +17,12 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS users_data(
 """)
 # Сохраниение запроса
 db.commit()
+# Закрываем соединение
+db.close()
 
 """3. Добавить пользователя с данными Ivan, qwer1234, 1234"""
-#Заполнение таблицы БЕЗОПАСНЫЙ СПОСОБ
-user_data = ('Ivan', 'qwer1234', 1234)
-cursor.execute("""INSERT INTO users_data(Login, Password, Code)
-    VALUES(?, ?, ?);""", user_data)
+userData = ('Ivan', 'qwer1234', '1234')
+cursor.executemany("""INSERT INTO users_data(Login, Password, Code)
+    VALUES(?, ?);""", userData)
 db.commit()
-print(user_data)
+db.close()
