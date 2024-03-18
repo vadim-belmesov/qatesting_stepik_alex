@@ -1,7 +1,11 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-driver = webdriver.Chrome()
+from selenium.webdriver.chrome.options import Options
+options = Options()
+# options.add_argument('--headless=new')
+
+driver = webdriver.Chrome(options=options)
 
 base_url = 'https://www.saucedemo.com/'
 driver.get(base_url)
