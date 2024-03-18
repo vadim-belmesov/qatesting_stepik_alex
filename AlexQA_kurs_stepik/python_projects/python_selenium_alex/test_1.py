@@ -45,7 +45,5 @@ get_url = driver.current_url
 assert url == get_url
 print("Good URL")
 
-
-
 # time.sleep(5)
 # driver.close()
