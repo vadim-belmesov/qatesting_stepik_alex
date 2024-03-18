@@ -1,3 +1,4 @@
+import datetime
 import time
 from selenium import webdriver
 from selenium.webdriver import Keys
@@ -27,6 +28,11 @@ filter_obj = driver.find_element(By.XPATH, "//select[@class='product_sort_contai
 filter_obj.click()
 filter_obj.send_keys(Keys.DOWN)
 filter_obj.send_keys(Keys.RETURN)
+
+"""Делаем скриншот"""
+timestamp_now = datetime.datetime.now().strftime('%Y.%m.%d.%H.%M.%S')
+driver.save_screenshot('C:\\projects\\projects\\Stepik_Python_Alex\\qatesting_stepik_alex\\AlexQA_kurs_stepik\\python_projects\\python_selenium_alex\\screenshots\\' + 'scr_' + timestamp_now + '.png' )
+
 
 """ Этот блок перепишем, вводя символы "вручную" (передавая их в ввод)
 ### enter password
